@@ -1,5 +1,5 @@
-package reserve_system.CirculatingItems;
+package reserve_system;
 
 public abstract class CirculatingItem {
-
+	
 }

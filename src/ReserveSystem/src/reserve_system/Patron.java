@@ -1,5 +1,5 @@
-package reserve_system.Patrons;
+package reserve_system;
 
 public abstract class Patron {
-
+	
 }

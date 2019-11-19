@@ -1,4 +1,4 @@
-package reserve_system.Patrons;
+package reserve_system;
 
 public class Student extends Patron {
 

@@ -1,4 +1,4 @@
-package reserve_system.CirculatingItems;
+package reserve_system;
 
 import java.util.ArrayList;
 

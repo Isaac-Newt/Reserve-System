@@ -1,4 +1,4 @@
-package reserve_system.CirculatingItems;
+package reserve_system;
 
 public class Key extends CirculatingItem {
 
