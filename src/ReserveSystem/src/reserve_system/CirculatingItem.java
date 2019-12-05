@@ -8,10 +8,10 @@ public abstract class CirculatingItem {
 	private String Location;
 	private CheckoutRecord Record;
 	
-	public CirculatingItem(int bar, int duration, String loc, CheckoutRecord rec) {
+	public CirculatingItem(int bar, int dur, String loc, CheckoutRecord rec) {
 		// Default constructor, call from subclasses with super(parameters)
 		this.Barcode = bar;
-		this.loanDuration = duration;
+		this.loanDuration = dur;
 		this.Location = loc;
 		this.Record = rec;
 	}
