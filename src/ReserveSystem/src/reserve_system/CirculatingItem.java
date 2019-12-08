@@ -15,16 +15,8 @@ public abstract class CirculatingItem {
 		this.Location = loc;
 	}
 	
-	public void setRecord(Patron patron) {
-		// Use Record data member's setters to modify dueDate and patronID
-	}
-	
 	public void checkOut(CheckoutRecord cr) {
 		this.Record = cr;
-	}
-	
-	public int getBarcode() {
-		return this.Barcode;
 	}
 	
 	public void returnItem() {
@@ -37,4 +29,21 @@ public abstract class CirculatingItem {
 		this.Record = null;  // is this correct?
 		//do we eliminate CheckoutRecord?  Or not worry about it?
 	}
+	
+	public int getBarcode() {
+		return this.Barcode;
+	}
+
+	public int getLoanDuration() {
+		return loanDuration;
+	}
+
+	public String getLocation() {
+		return Location;
+	}
+
+	public CheckoutRecord getRecord() {
+		return Record;
+	}
+	
 }

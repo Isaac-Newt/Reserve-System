@@ -33,9 +33,9 @@ public abstract class Patron {
 		GregorianCalendar dueDate = new GregorianCalendar();
 		//set due date as current time plus loan duration (hours)
 		dueDate.set(GregorianCalendar.HOUR, (dueDate.get(GregorianCalendar.HOUR)+ ci.getLoanDuration()));  
-		CheckoutRecord r = new CheckoutRecord(this.ID, ci, dueDate);
+		CheckoutRecord r = new CheckoutRecord(this, ci, dueDate);
 		addToRecord(r);  //Now implemented automatically with creation of record
-		ci.CheckOut(r); //Calls Checkout function in circulating item to store checkout record
+		ci.checkOut(r); //Calls Checkout function in circulating item to store checkout record
 		return r;
 	}
 	
