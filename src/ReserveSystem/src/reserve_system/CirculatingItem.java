@@ -23,7 +23,7 @@ public abstract class CirculatingItem {
 		CheckoutRecord cr = this.Record;
 		Patron patron = cr.getpatron();
 		// Add fine here
-		//Logic:  if return date is after due date, calculate fine
+		// Logic:  if return date is after due date, calculate fine
 		// Does this mean that each item needs to have a fine?
 		patron.removeFromRecord(cr);
 		this.Record = null;  // is this correct?
