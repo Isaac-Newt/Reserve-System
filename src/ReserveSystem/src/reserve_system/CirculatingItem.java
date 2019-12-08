@@ -23,8 +23,12 @@ public abstract class CirculatingItem {
 		this.Record = cr;
 	}
 	
-	public void return() {
-		CirculatingRecord cr = this.Record;
+	public int getBarcode() {
+		return this.Barcode;
+	}
+	
+	public void returnItem() {
+		CheckoutRecord cr = this.Record;
 		Patron patron = cr.getpatron();
 		// Add fine here
 		//Logic:  if return date is after due date, calculate fine

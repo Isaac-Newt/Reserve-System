@@ -14,7 +14,7 @@ public class Media extends CirculatingItem {
             String call, String title, String auth, String course, String owner,
             int bar, int dur, String loc, CheckoutRecord rec) {
         // Super class constructor
-        super(bar, dur, loc, rec);
+        super(bar, dur, loc);
         this.callNumber = call;
         this.Title = title;
         this.Author = auth;

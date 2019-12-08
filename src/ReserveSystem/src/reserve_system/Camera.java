@@ -8,7 +8,7 @@ public class Camera extends CirculatingItem implements ComplexItem {
 	private ArrayList<Accessory> itemList;
 	
 	public Camera(String mod, ArrayList<Accessory> list, int bar, int dur, String loc, CheckoutRecord rec) {
-		super(bar, dur, loc, rec);
+		super(bar, dur, loc);
 		this.Model = mod;
 		this.itemList = list;
 	}

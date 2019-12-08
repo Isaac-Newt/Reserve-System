@@ -7,7 +7,7 @@ public class Laptop extends CirculatingItem {
 	// private Accessory itemList;
 
 	public Laptop(String mod, int bar, int dur, String loc, CheckoutRecord rec) {
-		super(bar, dur, loc, rec);
+		super(bar, dur, loc);
 		this.Model = mod;
 	}
 

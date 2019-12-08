@@ -8,26 +8,27 @@ public class CheckoutRecord {
 	private GregorianCalendar DueDate = new GregorianCalendar();  // change to allow use of dates
 	
 	public CheckoutRecord(Patron p, CirculatingItem i, GregorianCalendar dd) {
-		this.patron = pi;
+		this.patron = p;
 		this.Item = i;
 		this.DueDate = dd;
 	}
 	
-	getpatron(){
+	public Patron getpatron(){
 		return this.patron;
 	}
 	
-	getDueDate(){
+	public GregorianCalendar getDueDate(){
 		return this.DueDate;
 	}
-	getItem(){
+	
+	public CirculatingItem getItem(){
 		return this.Item;
 	}
 	@Override
 	public String toString() {
 		String nstring = new String();
 		String dstring = new String();
-		nstring = this.Patron.getID() + ", "+this.Item.getBarcode();
+		nstring = this.patron.getID() + ", "+this.Item.getBarcode();
 		dstring = " Due date: "+DueDate.get(GregorianCalendar.YEAR)+" "+DueDate.get(GregorianCalendar.MONTH)+ " ";
 		dstring = dstring + DueDate.get(GregorianCalendar.DATE) + " @ "+DueDate.get(GregorianCalendar.HOUR)+this.DueDate.get(GregorianCalendar.MINUTE);
 		return nstring + dstring;
