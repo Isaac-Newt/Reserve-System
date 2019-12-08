@@ -1,22 +1,36 @@
 package reserve_system;
+
 import java.util.GregorianCalendar;
+
 public class CheckoutRecord {
-	private int PatronID;
+	private Patron patron;  // change Dec 7:  why not store patron, rather than ID?
 	private CirculatingItem Item;
 	private GregorianCalendar DueDate = new GregorianCalendar();  // change to allow use of dates
 	
-	public CheckoutRecord(int pi, CirculatingItem i, GregorianCalendar dd) {
-		this.PatronID = pi;
+	public CheckoutRecord(Patron p, CirculatingItem i, GregorianCalendar dd) {
+		this.patron = pi;
 		this.Item = i;
 		this.DueDate = dd;
+	}
+	
+	getpatron(){
+		return this.patron;
+	}
+	
+	getDueDate(){
+		return this.DueDate;
+	}
+	getItem(){
+		return this.Item;
 	}
 	@Override
 	public String toString() {
 		String nstring = new String();
 		String dstring = new String();
-		nstring = this.PatronID + ", "+this.Item.getBarcode();
+		nstring = this.Patron.getID() + ", "+this.Item.getBarcode();
 		dstring = " Due date: "+DueDate.get(GregorianCalendar.YEAR)+" "+DueDate.get(GregorianCalendar.MONTH)+ " ";
 		dstring = dstring + DueDate.get(GregorianCalendar.DATE) + " @ "+DueDate.get(GregorianCalendar.HOUR)+this.DueDate.get(GregorianCalendar.MINUTE);
 		return nstring + dstring;
 	}	
+	
 }

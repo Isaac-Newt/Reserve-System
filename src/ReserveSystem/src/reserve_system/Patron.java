@@ -34,11 +34,17 @@ public abstract class Patron {
 		//set due date as current time plus loan duration (hours)
 		dueDate.set(GregorianCalendar.HOUR, (dueDate.get(GregorianCalendar.HOUR)+ ci.getLoanDuration()));  
 		CheckoutRecord r = new CheckoutRecord(this.ID, ci, dueDate);
+		addToRecord(r);  //Now implemented automatically with creation of record
+		ci.CheckOut(r); //Calls Checkout function in circulating item to store checkout record
 		return r;
 	}
 	
 	public void addToRecord(CheckoutRecord r) {
 		this.Record.add(r);
+	}
+	
+	public void removeFromRecord(CheckoutRecord r) {
+		this.Record.remove(r);
 	}
 	
 	public int getID() {
@@ -92,6 +98,14 @@ public abstract class Patron {
 
 	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	
+	public void addToFine(double fine) {
+		this.fineBalance = this.fineBalance + fine;
+	}
+	
+	public void payFine(double payment) {
+		this.fineBalance = this.fineBalance - payment;
 	}
 	
 }

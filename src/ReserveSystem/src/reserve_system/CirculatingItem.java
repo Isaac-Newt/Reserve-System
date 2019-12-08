@@ -8,16 +8,29 @@ public abstract class CirculatingItem {
 	private String Location;
 	private CheckoutRecord Record;
 	
-	public CirculatingItem(int bar, int dur, String loc, CheckoutRecord rec) {
+	public CirculatingItem(int bar, int dur, String loc) {
 		// Default constructor, call from subclasses with super(parameters)
 		this.Barcode = bar;
 		this.loanDuration = dur;
 		this.Location = loc;
-		this.Record = rec;
 	}
 	
 	public void setRecord(Patron patron) {
 		// Use Record data member's setters to modify dueDate and patronID
 	}
 	
+	public void checkOut(CheckoutRecord cr) {
+		this.Record = cr;
+	}
+	
+	public void return() {
+		CirculatingRecord cr = this.Record;
+		Patron patron = cr.getpatron();
+		// Add fine here
+		//Logic:  if return date is after due date, calculate fine
+		// Does this mean that each item needs to have a fine?
+		patron.removeFromRecord(cr);
+		this.Record = null;  // is this correct?
+		//do we eliminate CheckoutRecord?  Or not worry about it?
+	}
 }
