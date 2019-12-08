@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 
 public abstract class Patron {
 	private int ID;
+	private String Type;
 	private String lastName;
 	private String firstName;
 	private double fineBalance;
@@ -17,8 +18,9 @@ public abstract class Patron {
 	private ArrayList<CheckoutRecord> Record;
 	
 	// Initialization assumes zero fine balance, false bike waiver, nothing checked out
-	public Patron (int i, String ln, String fn, String e, int p) {
+	public Patron (int i, String t, String ln, String fn, String e, int p) {
 		this.ID = i;
+		this.Type = t;
 		this.lastName = ln;
 		this.firstName = fn;
 		this.email = e;
@@ -73,6 +75,10 @@ public abstract class Patron {
 
 	public double getFineBalance() {
 		return fineBalance;
+	}
+
+	public String getType() {
+		return Type;
 	}
 
 
