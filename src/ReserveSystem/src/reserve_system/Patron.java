@@ -41,6 +41,16 @@ public class Patron {
 		return r;
 	}
 	
+	public String listCheckoutItems() {
+		String istring = "";
+		String item = "";
+		String dd = "";	
+		for(CheckoutRecord cr:this.Record) {
+			istring = istring + cr.toString() + "\n";
+		}
+		return istring;
+	}
+	
 	public void addToRecord(CheckoutRecord r) {
 		this.Record.add(r);
 	}

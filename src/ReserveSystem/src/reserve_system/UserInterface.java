@@ -185,8 +185,10 @@ public class UserInterface {
         			"List checked out items",
                     JOptionPane.PLAIN_MESSAGE);     
         	Integer pid = Integer.valueOf(pi);
-        	Patron patron = patronList.getPatron(pid);
-        	// create list of checked out items
+        	Patron patron = npl.getPatron(pid);
+        	String ilist = "";
+        	ilist = patron.listCheckoutItems();
+        	System.out.println(ilist);
        });
          
   		

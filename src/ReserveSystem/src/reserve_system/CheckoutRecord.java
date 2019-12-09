@@ -28,7 +28,7 @@ public class CheckoutRecord {
 	public String toString() {
 		String nstring = new String();
 		String dstring = new String();
-		nstring = this.patron.getID() + ", "+this.Item.getBarcode();
+		nstring = "Patron ID:" + this.patron.getID() + ", Item barcode: "+this.Item.getBarcode();
 		dstring = " Due date: "+DueDate.get(GregorianCalendar.YEAR)+" "+DueDate.get(GregorianCalendar.MONTH)+ " ";
 		dstring = dstring + DueDate.get(GregorianCalendar.DATE) + " @ "+DueDate.get(GregorianCalendar.HOUR)+this.DueDate.get(GregorianCalendar.MINUTE);
 		return nstring + dstring;
