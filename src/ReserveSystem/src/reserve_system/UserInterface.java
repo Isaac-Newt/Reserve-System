@@ -100,7 +100,7 @@ public class UserInterface {
         	JLabel ppl = new JLabel("Patron phone: ");
         	JTextField pp = new JTextField("");
         	String ptype[]={"Faculty", "Student", "Community"};        
-    	    JComboBox cb=new JComboBox(language);    
+    	    JComboBox cb=new JComboBox(ptype);    
         	
         	
         	JButton confirm = new JButton("Confirm");
@@ -111,7 +111,7 @@ public class UserInterface {
         	pidl.setBounds(50, 250, 100, 30);
         	pel.setBounds(50, 350, 100, 30);
         	ppl.setBounds(50, 450, 100, 30);
-        	cb.setBounds(50, 550, 100, 30)
+        	cb.setBounds(50, 550, 100, 30);
         	
         	fn.setBounds(150, 50, 100, 30);
         	ln.setBounds(150, 150, 100, 30);
@@ -131,7 +131,7 @@ public class UserInterface {
         	ap.add(pid);
         	ap.add(pe);
         	ap.add(pp);
-        	ap.add(cb;)
+        	ap.add(cb);
         	ap.add(confirm);
         	
         	ap.setSize(800,800);
@@ -146,14 +146,14 @@ public class UserInterface {
         	Integer pidn = Integer.valueOf(pid.getText()); 
         	String pem = pe.getText(); 
         	Integer pph = Integer.valueOf(pp.getText()); 
-        	String pt = cb.getSelectedItem();
+        	String pt = (String) cb.getSelectedItem();
         	
-        	confirm.addActionListener((ActionEvent e)-> {
-        		np = new Patron(pidn, pt, pfn, pln, pe, pph);
-        		PatronList.addPatron(pidn, np);
-        		ap.setVisible(false);
-        		f.repaint();
-        	}
+        	//confirm.addActionListener((ActionEvent f)-> {
+        	//	np = new Patron(pidn, pt, pfn, pln, pe, pph);
+        	//	PatronList.addPatron(pidn, np);
+        	//	ap.setVisible(false);
+        	//	f.repaint();
+        	//});
         	
         	
        
@@ -164,20 +164,29 @@ public class UserInterface {
         
         i5.addActionListener((ActionEvent e) -> {
         	String pi = (String)JOptionPane.showInputDialog(null,
-                    "Please patron's ID:\n",
+                    "Please enter patron's ID:\n",
                     "Pay fine",
                     JOptionPane.PLAIN_MESSAGE);  
         	//Need to look up Patron using ID, display current fine balance, 
         	//Ask for payment on balance, and adjust balance
+        	Integer pid = Integer.valueOf(pi);
+        	Patron patron = patronList.getPatron(pid);
+        	String pmnt = (String)JOptionPane.showInputDialog(null,
+                    "Current fine balance is: "+patron.getFineBalance()+".  Enter payment amount.",
+                    "Pay fine",
+                    JOptionPane.PLAIN_MESSAGE); 
+        	double pmntd = Double.valueOf(pmnt);
+        	patron.payFine(pmntd);
         });
         
-        i5.addActionListener((ActionEvent e) -> {
+        i6.addActionListener((ActionEvent e) -> {
         	String pi = (String)JOptionPane.showInputDialog(null,
-                    "Please patron's ID:\n",
-                    "Pay fine",
-                    JOptionPane.PLAIN_MESSAGE);  
-        	//Need to look up Patron using ID, obtain Record, obtain checkoutrecords, obtain circulating item
-        	//Obtain item information, and display.  Will need toString for each item type.
+        			"Please enter patron's ID:\n",
+        			"List checked out items",
+                    JOptionPane.PLAIN_MESSAGE);     
+        	Integer pid = Integer.valueOf(pi);
+        	Patron patron = patronList.getPatron(pid);
+        	// create list of checked out items
        });
          
   		
