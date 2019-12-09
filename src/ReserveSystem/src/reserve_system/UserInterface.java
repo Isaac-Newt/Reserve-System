@@ -10,6 +10,7 @@ public class UserInterface {
     
     // Patron and CirculatingItem Lists
     PatronList patronList;
+    CirculatingItemList itemList;
     
     UserInterface(){
 	    JFrame f= new JFrame("Reserve Circulation System");  
@@ -35,25 +36,31 @@ public class UserInterface {
         f.setSize(800,800);  
         f.setLayout(null);  
         f.setVisible(true); 
+        
         i1.addActionListener((ActionEvent e)->{
         	// pi String is PatronID
         	String pi = (String)JOptionPane.showInputDialog(null,
                     "Please enter patron ID:\n",
                     "Item checkout",
                     JOptionPane.PLAIN_MESSAGE); 
-        	//If we wanted to be fancy, we could automatically list checked out items here.
-        	//Need to look up Patron, check for fine if community member
+        	
+        	// If we wanted to be fancy, we could automatically list checked out items here.
+        	// Need to look up Patron, check for fine if community member
         	
         	Integer patronID = Integer.valueOf(pi);
         	Patron patron = patronList.getPatron(patronID);
         	
         	// bc String is item barcode
-        	String bc = (String)JOptionPane.showInputDialog(null,
+        	String barcode = (String)JOptionPane.showInputDialog(null,
                     "Please enter item barcode:\n",
                     "Item checkout",
                     JOptionPane.PLAIN_MESSAGE); 
         	
+        	Integer itemBarCode = Integer.valueOf(barcode);
+        	CirculatingItem item = itemList.getItem(itemBarCode);
         	
+        	// Check out the item to the selected patron
+        	patron.checkOut(item);
         });
         
         i2.addActionListener((ActionEvent e)->{

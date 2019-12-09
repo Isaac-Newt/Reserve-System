@@ -81,7 +81,6 @@ public abstract class Patron {
 		return Type;
 	}
 
-
 	public boolean isBikeWaiver() {
 		return bikeWaiver;
 	}

@@ -12,7 +12,7 @@ public class CirculatingItemList {
 	}
 	
 	// Getter
-	public CirculatingItem getPatron(Integer itemBarCode) {
+	public CirculatingItem getItem(Integer itemBarCode) {
 		CirculatingItem item = itemList.get(itemBarCode);
 		return item;
 	}
