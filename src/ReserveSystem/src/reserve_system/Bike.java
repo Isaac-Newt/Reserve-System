@@ -2,7 +2,7 @@ package reserve_system;
 
 import java.util.ArrayList;
 
-public class Bike extends CirculatingItem implements ComplexItem {
+public class Bike extends CirculatingItem {
 	
 	private String Model;
 	private ArrayList<Accessory> itemList;
