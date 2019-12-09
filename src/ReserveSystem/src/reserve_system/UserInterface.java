@@ -4,8 +4,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*; 
 public class UserInterface {
+	
 	JMenu Circulation, PatronRecords;  //Menu 
     JMenuItem i1, i2, i3, i4, i5, i6; //Menu Items 
+    
+    // Patron and CirculatingItem Lists
+    PatronList patronList;
+    
     UserInterface(){
 	    JFrame f= new JFrame("Reserve Circulation System");  
 	    JMenuBar mb=new JMenuBar(); //Menu Bar
@@ -31,16 +36,24 @@ public class UserInterface {
         f.setLayout(null);  
         f.setVisible(true); 
         i1.addActionListener((ActionEvent e)->{
+        	// pi String is PatronID
         	String pi = (String)JOptionPane.showInputDialog(null,
                     "Please enter patron ID:\n",
                     "Item checkout",
                     JOptionPane.PLAIN_MESSAGE); 
         	//If we wanted to be fancy, we could automatically list checked out items here.
         	//Need to look up Patron, check for fine if community member
+        	
+        	Integer patronID = Integer.valueOf(pi);
+        	Patron patron = patronList.getPatron(patronID);
+        	
+        	// bc String is item barcode
         	String bc = (String)JOptionPane.showInputDialog(null,
                     "Please enter item barcode:\n",
                     "Item checkout",
                     JOptionPane.PLAIN_MESSAGE); 
+        	
+        	
         });
         
         i2.addActionListener((ActionEvent e)->{
