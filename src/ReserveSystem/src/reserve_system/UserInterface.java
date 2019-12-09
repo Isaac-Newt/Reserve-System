@@ -14,6 +14,7 @@ public class UserInterface {
     
     UserInterface(){
 	    JFrame f= new JFrame("Reserve Circulation System");  
+	    
 	    JMenuBar mb=new JMenuBar(); //Menu Bar
 		Circulation = new JMenu("Circulation");
 		PatronRecords = new JMenu("Patron records");
@@ -32,12 +33,12 @@ public class UserInterface {
 		mb.add(Circulation);
 		mb.add(PatronRecords);
 		f.setJMenuBar(mb);  //Adding MenuBar to frame
-        
+
         f.setSize(800,800);  
         f.setLayout(null);  
         f.setVisible(true); 
         
-        i1.addActionListener((ActionEvent e)->{
+        i1.addActionListener((ActionEvent e) -> {
         	// pi String is PatronID
         	String pi = (String)JOptionPane.showInputDialog(null,
                     "Please enter patron ID:\n",
@@ -63,20 +64,24 @@ public class UserInterface {
         	patron.checkOut(item);
         });
         
-        i2.addActionListener((ActionEvent e)->{
-        	String bc = (String)JOptionPane.showInputDialog(null,
+        i2.addActionListener((ActionEvent e) -> {
+        	String barcode = (String)JOptionPane.showInputDialog(null,
                     "Please enter item barcode:\n",
                     "Item return",
                     JOptionPane.PLAIN_MESSAGE);  
-        	//Need to look up item, find checkout record, obtain patron
-            });
+        	
+        	// Look up item, initiate checkIn function
+    		Integer itemBarCode = Integer.valueOf(barcode);
+    		CirculatingItem item = itemList.getItem(itemBarCode);
+    		item.returnItem();
+        });
         
-        i3.addActionListener((ActionEvent e)->{
+        i3.addActionListener((ActionEvent e) -> {
         	// need to bring up pane for data entry for search
         	JOptionPane.showMessageDialog(null, "Display dialog for search", "Search for circulating item",  1);
-            });
+        });
         
-        i4.addActionListener((ActionEvent e)->{
+        i4.addActionListener((ActionEvent e) -> {
         	
         	JDesktopPane ap = new JDesktopPane();
         	
@@ -140,9 +145,9 @@ public class UserInterface {
         	// Need to add actionlistener for confirm.
         	
         	//Need to call patron constructor, add new patron to patronlist
-            });
+        });
         
-        i5.addActionListener((ActionEvent e)->{
+        i5.addActionListener((ActionEvent e) -> {
         	String pi = (String)JOptionPane.showInputDialog(null,
                     "Please patron's ID:\n",
                     "Pay fine",
@@ -151,7 +156,7 @@ public class UserInterface {
         	//Ask for payment on balance, and adjust balance
         });
         
-        i5.addActionListener((ActionEvent e)->{
+        i5.addActionListener((ActionEvent e) -> {
         	String pi = (String)JOptionPane.showInputDialog(null,
                     "Please patron's ID:\n",
                     "Pay fine",
