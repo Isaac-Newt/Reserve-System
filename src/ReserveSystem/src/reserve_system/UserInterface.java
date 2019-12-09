@@ -99,6 +99,9 @@ public class UserInterface {
         	
         	JLabel ppl = new JLabel("Patron phone: ");
         	JTextField pp = new JTextField("");
+        	String ptype[]={"Faculty", "Student", "Community"};        
+    	    JComboBox cb=new JComboBox(language);    
+        	
         	
         	JButton confirm = new JButton("Confirm");
         	
@@ -108,6 +111,7 @@ public class UserInterface {
         	pidl.setBounds(50, 250, 100, 30);
         	pel.setBounds(50, 350, 100, 30);
         	ppl.setBounds(50, 450, 100, 30);
+        	cb.setBounds(50, 550, 100, 30)
         	
         	fn.setBounds(150, 50, 100, 30);
         	ln.setBounds(150, 150, 100, 30);
@@ -115,7 +119,7 @@ public class UserInterface {
         	pe.setBounds(150, 350, 100, 30);
         	pp.setBounds(150, 450, 100, 30);
         	
-        	confirm.setBounds(500,250,100,30);
+        	confirm.setBounds(250,500,100,30);
         	
         	ap.add(fnl);
         	ap.add(lnl);
@@ -127,6 +131,7 @@ public class UserInterface {
         	ap.add(pid);
         	ap.add(pe);
         	ap.add(pp);
+        	ap.add(cb;)
         	ap.add(confirm);
         	
         	ap.setSize(800,800);
@@ -138,11 +143,21 @@ public class UserInterface {
         	
         	String pfn = fn.getText(); 
         	String pln = ln.getText(); 
-        	String pidn = pid.getText(); 
+        	Integer pidn = Integer.valueOf(pid.getText()); 
         	String pem = pe.getText(); 
-        	String pph = pp.getText(); 
+        	Integer pph = Integer.valueOf(pp.getText()); 
+        	String pt = cb.getSelectedItem();
+        	
+        	confirm.addActionListener((ActionEvent e)-> {
+        		np = new Patron(pidn, pt, pfn, pln, pe, pph);
+        		PatronList.addPatron(pidn, np);
+        		ap.setVisible(false);
+        		f.repaint();
+        	}
+        	
+        	
        
-        	// Need to add actionlistener for confirm.
+        	
         	
         	//Need to call patron constructor, add new patron to patronlist
         });
