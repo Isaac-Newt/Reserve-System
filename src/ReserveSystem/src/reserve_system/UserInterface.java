@@ -12,7 +12,7 @@ public class UserInterface {
     PatronList patronList;
     CirculatingItemList itemList;
     
-    UserInterface(){
+    UserInterface(PatronList npl, CirculatingItemList cil){ //we must have instances of patronlist, circitemlist.
 	    JFrame f= new JFrame("Reserve Circulation System");  
 	    
 	    JMenuBar mb=new JMenuBar(); //Menu Bar
@@ -49,7 +49,7 @@ public class UserInterface {
         	// Need to look up Patron, check for fine if community member
         	
         	Integer patronID = Integer.valueOf(pi);
-        	Patron patron = patronList.getPatron(patronID);
+        	Patron patron = npl.getPatron(patronID);
         	
         	// bc String is item barcode
         	String barcode = (String)JOptionPane.showInputDialog(null,
@@ -58,7 +58,7 @@ public class UserInterface {
                     JOptionPane.PLAIN_MESSAGE); 
         	
         	Integer itemBarCode = Integer.valueOf(barcode);
-        	CirculatingItem item = itemList.getItem(itemBarCode);
+        	CirculatingItem item = cil.getItem(itemBarCode);
         	
         	// Check out the item to the selected patron
         	patron.checkOut(item);
@@ -72,7 +72,7 @@ public class UserInterface {
         	
         	// Look up item, initiate checkIn function
     		Integer itemBarCode = Integer.valueOf(barcode);
-    		CirculatingItem item = itemList.getItem(itemBarCode);
+    		CirculatingItem item = cil.getItem(itemBarCode);
     		item.returnItem();
         });
         
@@ -150,7 +150,7 @@ public class UserInterface {
         	
         	//confirm.addActionListener((ActionEvent f)-> {
         	//	np = new Patron(pidn, pt, pfn, pln, pe, pph);
-        	//	PatronList.addPatron(pidn, np);
+        	//	npl.addPatron(pidn, np);
         	//	ap.setVisible(false);
         	//	f.repaint();
         	//});
@@ -170,9 +170,9 @@ public class UserInterface {
         	//Need to look up Patron using ID, display current fine balance, 
         	//Ask for payment on balance, and adjust balance
         	Integer pid = Integer.valueOf(pi);
-        	Patron patron = patronList.getPatron(pid);
+        	Patron patron = npl.getPatron(pid);
         	String pmnt = (String)JOptionPane.showInputDialog(null,
-                    "Current fine balance is: "+patron.getFineBalance()+".  Enter payment amount.",
+                    "Current fine balance is: "+patron.getFineBalance()+".  Enter payment amount.\n",
                     "Pay fine",
                     JOptionPane.PLAIN_MESSAGE); 
         	double pmntd = Double.valueOf(pmnt);
@@ -192,7 +192,18 @@ public class UserInterface {
   		
     }
 	public static void main(String[] args) {
-		new UserInterface();
+		Patron o1 = new Patron(101, "Faculty", "Joe", "Smith", "js@123.com", 4555555);
+		Patron o2 = new Patron(102, "Student", "Johan", "Schmidt", "js2@123.com", 3555555);
+		Patron o3 = new Patron(103, "Community", "Joseph", "Smith", "js3@123.com", 2555555);
+		PatronList npl = new PatronList(101, o1);
+		npl.addPatron(102,o2);
+		npl.addPatron(103, o3);
+		o3.addToFine(5.00);
+		Key k1 = new Key(1001, 102);
+		Key k2 = new Key(1002, 103);
+		CirculatingItemList cil = new CirculatingItemList(1001, k1);
+		cil.addItem(1002, k2);
+		new UserInterface(npl, cil);
 	}
 
 }

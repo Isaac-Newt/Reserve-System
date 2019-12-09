@@ -6,7 +6,7 @@ import java.util.GregorianCalendar;
 // Also added methods for CheckoutRecord and addToRecord.
 // This required changing the due date field of Circulating Item to GregorianCalendar type.
 
-public abstract class Patron {
+public class Patron {
 	private int ID;
 	private String Type;
 	private String lastName;
