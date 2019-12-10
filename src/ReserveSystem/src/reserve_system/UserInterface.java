@@ -90,14 +90,17 @@ public class UserInterface {
                     "Please enter patron's ID:\n",
                     "Pay fine",
                     JOptionPane.PLAIN_MESSAGE);  
-        	//Need to look up Patron using ID, display current fine balance, 
-        	//Ask for payment on balance, and adjust balance
+        	
+        	// Need to look up Patron using ID, display current fine balance, 
+        	// Ask for payment on balance, and adjust balance
         	Integer pid = Integer.valueOf(pi);
         	Patron patron = npl.getPatron(pid);
+        	
         	String pmnt = (String)JOptionPane.showInputDialog(null,
                     "Current fine balance is: "+patron.getFineBalance()+".  Enter payment amount.\n",
                     "Pay fine",
-                    JOptionPane.PLAIN_MESSAGE); 
+                    JOptionPane.PLAIN_MESSAGE);
+        	
         	double pmntd = Double.valueOf(pmnt);
         	patron.payFine(pmntd);
         });
@@ -106,12 +109,15 @@ public class UserInterface {
         	String pi = (String)JOptionPane.showInputDialog(null,
         			"Please enter patron's ID:\n",
         			"List checked out items",
-                    JOptionPane.PLAIN_MESSAGE);     
+                    JOptionPane.PLAIN_MESSAGE);
+        	
         	Integer pid = Integer.valueOf(pi);
         	Patron patron = npl.getPatron(pid);
         	String ilist = "";
         	ilist = patron.listCheckoutItems();
-        	System.out.println(ilist);
+        	
+        	// Display message in JOptionPane Dialog box
+        	JOptionPane.showMessageDialog(null, ilist);
        });
          
   		
