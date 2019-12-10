@@ -50,19 +50,26 @@ public class UserInterface {
         	
         	Integer patronID = Integer.valueOf(pi);
         	Patron patron = npl.getPatron(patronID);
-        	
-        	// bc String is item barcode
-        	String barcode = (String)JOptionPane.showInputDialog(null,
-                    "Please enter item barcode:\n",
-                    "Item checkout",
-                    JOptionPane.PLAIN_MESSAGE); 
-        	
-        	Integer itemBarCode = Integer.valueOf(barcode);
-        	CirculatingItem item = cil.getItem(itemBarCode);
-        	
-        	// Check out the item to the selected patron
-        	patron.checkOut(item);
-        });
+        	Double fb = patron.getFineBalance();
+        	String pt = patron.getType();
+        	if (fb > 0 & pt.equals("Community")) {
+        		String estring = "Patron must pay fine balance.  Current balance: $" + patron.getFineBalance();
+        			JOptionPane.showMessageDialog(null, estring);
+        	}
+        	else {
+	        	// bc String is item barcode
+	        	String barcode = (String)JOptionPane.showInputDialog(null,
+	                    "Please enter item barcode:\n",
+	                    "Item checkout",
+	                    JOptionPane.PLAIN_MESSAGE); 
+	        	
+	        	Integer itemBarCode = Integer.valueOf(barcode);
+	        	CirculatingItem item = cil.getItem(itemBarCode);
+	        	
+	        	// Check out the item to the selected patron
+	        	patron.checkOut(item);
+        	}
+	    });
         
         i2.addActionListener((ActionEvent e) -> {
         	String barcode = (String)JOptionPane.showInputDialog(null,
