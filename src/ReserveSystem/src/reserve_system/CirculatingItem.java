@@ -54,4 +54,7 @@ public abstract class CirculatingItem {
 		return Record;
 	}
 	
+	public String getType() {
+		return Type;
+	}
 }
