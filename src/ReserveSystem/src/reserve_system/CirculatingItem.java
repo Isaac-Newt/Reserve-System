@@ -30,6 +30,12 @@ public abstract class CirculatingItem {
 		//do we eliminate CheckoutRecord?  Or not worry about it?
 	}
 	
+	public boolean isAvailable() {
+		boolean Available = true;
+		if (this.Record != null) Available = false;
+		return Available;
+	}
+	
 	public int getBarcode() {
 		return this.Barcode;
 	}

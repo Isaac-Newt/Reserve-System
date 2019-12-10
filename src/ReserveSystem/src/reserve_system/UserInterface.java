@@ -78,7 +78,24 @@ public class UserInterface {
         
         i3.addActionListener((ActionEvent e) -> {
         	// need to bring up pane for data entry for search
-        	JOptionPane.showMessageDialog(null, "Display dialog for search", "Search for circulating item",  1);
+        	String barcode = (String) JOptionPane.showInputDialog(null, 
+        			"Please enter item barcode:\n",
+        			"Item search",
+        			JOptionPane.PLAIN_MESSAGE);
+        	
+        	Integer itemBarCode = Integer.valueOf(barcode);
+        	CirculatingItem item = cil.getItem(itemBarCode);
+        	boolean isAvailable = item.isAvailable();
+        	
+        	String message = "";
+        	if (isAvailable) {
+        		message = "Item " + itemBarCode + " is available";
+        	}
+        	else {
+        		message = "Item " + itemBarCode + " is not available";
+        	}
+        	
+        	JOptionPane.showMessageDialog(null, message);
         });
         
         i4.addActionListener((ActionEvent e) -> {
