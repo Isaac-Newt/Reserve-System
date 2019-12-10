@@ -8,7 +8,7 @@ public class Bike extends CirculatingItem {
 	private ArrayList<Accessory> itemList;
 
 	public Bike(String mod, ArrayList<Accessory> list, int bar, int dur, String loc, CheckoutRecord rec) {
-		super(bar, dur, loc);
+		super("Bike", bar, dur, loc);
 		this.Model = mod;
 		this.itemList = list;
 	}

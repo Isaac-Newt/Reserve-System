@@ -3,13 +3,15 @@ package reserve_system;
 public abstract class CirculatingItem {
 	
 	// Abstract class does not define data members, only declares them
+	private String Type;
 	private int Barcode;
 	private int loanDuration;
 	private String Location;
 	private CheckoutRecord Record;
 	
-	public CirculatingItem(int bar, int dur, String loc) {
+	public CirculatingItem(String type, int bar, int dur, String loc) {
 		// Default constructor, call from subclasses with super(parameters)
+		this.Type = type;
 		this.Barcode = bar;
 		this.loanDuration = dur;
 		this.Location = loc;

@@ -8,7 +8,7 @@ public class Accessory extends CirculatingItem {
     public Accessory(String name, CirculatingItem asd,
         int bar, int dur, String loc, CheckoutRecord rec) {
         // Super constructor
-        super(bar, dur, loc);
+        super("Accessory", bar, dur, loc);
         this.Name = name;
         this.associatedItem = asd;
     }
