@@ -89,13 +89,17 @@ public class UserInterface {
         	
         	String message = "";
         	if (isAvailable) {
-        		message = "Item " + itemBarCode + " is available";
+        		message = "Item " +item.getType()+" "+ itemBarCode + " is available";
         	}
         	else {
-        		message = "Item " + itemBarCode + " is not available";
+        		message = "Item " + item.getType() + " " + itemBarCode + " is not available";
         	}
+        	JPanel clisth = new JPanel();
+        	JTextField clist = new JTextField();
+        	clist.setText(message);
+        	clisth.add(clist);
         	
-        	JOptionPane.showMessageDialog(null, message);
+        	JOptionPane.showMessageDialog(null, clisth);
         });
         
         i4.addActionListener((ActionEvent e) -> {
