@@ -6,10 +6,9 @@ import java.awt.event.ActionListener;
 
 public class PatronInterface {
 
-	public PatronInterface(JFrame f, PatronList npl) {
-		
-		JDesktopPane ap = new JDesktopPane();
-    	
+	public PatronInterface(PatronList npl, JFrame f) {
+		JPanel addpat = new JPanel();
+    	JLabel tl = new JLabel("Enter patron information");
     	JLabel fnl = new JLabel("First Name: ");
     	JTextField fn = new JTextField("");
     	
@@ -24,62 +23,65 @@ public class PatronInterface {
     	
     	JLabel ppl = new JLabel("Patron phone: ");
     	JTextField pp = new JTextField("");
-    	String ptype[]={"Faculty", "Student", "Community"};        
+    	
+    	String ptype[]={"Faculty", "Student", "Community"};  
+    	JLabel cbl = new JLabel("Patron type");
 	    JComboBox cb=new JComboBox(ptype);    
     	
     	
     	JButton confirm = new JButton("Confirm");
     	
-    	
+    	tl.setBounds(150, 10, 200, 30);
     	fnl.setBounds(50, 50, 100, 30);
     	lnl.setBounds(50, 150, 100, 30);
     	pidl.setBounds(50, 250, 100, 30);
     	pel.setBounds(50, 350, 100, 30);
     	ppl.setBounds(50, 450, 100, 30);
-    	cb.setBounds(50, 550, 100, 30);
+    	cbl.setBounds(50, 550, 100, 30);
     	
     	fn.setBounds(150, 50, 100, 30);
     	ln.setBounds(150, 150, 100, 30);
     	pid.setBounds(150, 250, 100, 30);
     	pe.setBounds(150, 350, 100, 30);
     	pp.setBounds(150, 450, 100, 30);
+    	cb.setBounds(150, 550, 100, 30);
     	
-    	confirm.setBounds(250,500,100,30);
+    	confirm.setBounds(250,600,100,30);
+    	addpat.add(tl);
+    	addpat.add(fnl);
+    	addpat.add(lnl);
+    	addpat.add(pidl);
+    	addpat.add(pel);
+    	addpat.add(ppl);
+    	addpat.add(fn);
+    	addpat.add(ln);
+    	addpat.add(pid);
+    	addpat.add(pe);
+    	addpat.add(pp);
+    	addpat.add(cbl);
+    	addpat.add(cb);
+    	addpat.add(confirm);
+    	f.add(addpat);
     	
-    	ap.add(fnl);
-    	ap.add(lnl);
-    	ap.add(pidl);
-    	ap.add(pel);
-    	ap.add(ppl);
-    	ap.add(fn);
-    	ap.add(ln);
-    	ap.add(pid);
-    	ap.add(pe);
-    	ap.add(pp);
-    	ap.add(cb);
-    	ap.add(confirm);
-    	
-    	ap.setSize(800,800);
-    	ap.setVisible(true);
-
-    	f.add(ap);
-    	f.repaint();
+    	addpat.setSize(800,800);
+    	addpat.setVisible(true);
     	
     	
-    	String pfn = fn.getText(); 
-    	String pln = ln.getText(); 
-    	Integer pidn = Integer.valueOf(pid.getText()); 
-    	String pem = pe.getText(); 
-    	Integer pph = Integer.valueOf(pp.getText()); 
-    	String pt = (String) cb.getSelectedItem();
     	
     	confirm.addActionListener((ActionEvent event_1)-> {
+    		String pfn = fn.getText(); 
+        	String pln = ln.getText(); 
+        	String pidns = pid.getText(); 
+        	String pem = pe.getText(); 
+        	String pphs = pp.getText(); 
+        	String pt = (String) cb.getSelectedItem();
+    		int pidn = Integer.parseInt(pidns);
+    		int pph = Integer.parseInt(pphs);
     		Patron np = new Patron(pidn, pt, pfn, pln, pem, pph);
     		npl.addPatron(pidn, np);
-    		ap.setVisible(false);
+    		JOptionPane.showMessageDialog(null,  "Patron added", "",1);
+    		f.remove(addpat);
     		f.repaint();
     	});
-    	
 	}
-	
 }
