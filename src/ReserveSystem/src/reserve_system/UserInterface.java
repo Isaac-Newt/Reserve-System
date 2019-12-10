@@ -100,6 +100,7 @@ public class UserInterface {
         
         i4.addActionListener((ActionEvent e) -> {
         	PatronInterface patInt = new PatronInterface(f, npl);
+		f.repaint();  // added eb
         });
         
         i5.addActionListener((ActionEvent e) -> {
