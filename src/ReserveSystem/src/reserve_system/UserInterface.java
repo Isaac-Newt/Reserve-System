@@ -99,7 +99,7 @@ public class UserInterface {
         });
         
         i4.addActionListener((ActionEvent e) -> {
-        	PatronInterface patInt = new PatronInterface(f, npl);
+        	PatronInterface patInt = new PatronInterface(npl, f);
 		f.repaint();  // added eb
         });
         
