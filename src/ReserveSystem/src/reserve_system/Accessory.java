@@ -12,5 +12,9 @@ public class Accessory extends CirculatingItem {
         this.Name = name;
         this.associatedItem = asd;
     }
+    
+    public String getName() {
+    	return this.Name;
+    }
 
 }
