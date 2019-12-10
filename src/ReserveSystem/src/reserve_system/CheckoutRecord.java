@@ -21,6 +21,10 @@ public class CheckoutRecord {
 		return this.DueDate;
 	}
 	
+	public void setDueDate(GregorianCalendar d) {
+		this.DueDate = d;
+	}
+	
 	public CirculatingItem getItem(){
 		return this.Item;
 	}

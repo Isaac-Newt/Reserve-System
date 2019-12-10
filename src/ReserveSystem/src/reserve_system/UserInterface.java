@@ -1,12 +1,13 @@
 package reserve_system;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.GregorianCalendar;
 
 import javax.swing.*; 
 public class UserInterface {
 	
 	JMenu Circulation, PatronRecords;  //Menu 
-    JMenuItem i1, i2, i3, i4, i5, i6; //Menu Items 
+    JMenuItem i1, i2, i3, i4, i5, i6, i7; //Menu Items 
     
     // Patron and CirculatingItem Lists
     PatronList patronList;
@@ -24,9 +25,11 @@ public class UserInterface {
 		i4=new JMenuItem("Add Patron");
 		i5=new JMenuItem("Pay fine");
 		i6=new JMenuItem("List checked out items");
+		i7 = new JMenuItem("Change due date");
 		Circulation.add(i1);
 		Circulation.add(i2);
 		Circulation.add(i3);
+		Circulation.add(i7);
 		PatronRecords.add(i4);
 		PatronRecords.add(i5);
 		PatronRecords.add(i6);
@@ -65,9 +68,10 @@ public class UserInterface {
 	        	
 	        	Integer itemBarCode = Integer.valueOf(barcode);
 	        	CirculatingItem item = cil.getItem(itemBarCode);
-	        	
-	        	// Check out the item to the selected patron
-	        	patron.checkOut(item);
+        		        // Check out the item to the selected patron
+	        		patron.checkOut(item);
+	        		String cstring = patron.getFirstName() + " " + patron.getLastName() + " checked out item ID " +barcode;
+	        		JOptionPane.showMessageDialog(null, cstring);
         	}
 	    });
         
@@ -80,6 +84,17 @@ public class UserInterface {
         	// Look up item, initiate checkIn function
     		Integer itemBarCode = Integer.valueOf(barcode);
     		CirculatingItem item = cil.getItem(itemBarCode);
+    		CheckoutRecord cr = item.getRecord();
+    		Patron patron = cr.getpatron();
+    		GregorianCalendar duedate = cr.getDueDate();
+    		GregorianCalendar ctime = new GregorianCalendar();
+    		int overdue = ctime.get(GregorianCalendar.HOUR_OF_DAY) - duedate.get(GregorianCalendar.HOUR_OF_DAY);
+    		if (overdue > 0) {
+    			double fine = overdue * .25;
+    			String fstring = "Item overdue by " + overdue + "hours.  Fine added:  $"+fine;
+    			patron.addToFine(fine);
+    			JOptionPane.showMessageDialog(null, fstring);
+    		}
     		item.returnItem();
         });
         
@@ -132,6 +147,9 @@ public class UserInterface {
         	
         	double pmntd = Double.valueOf(pmnt);
         	patron.payFine(pmntd);
+        	String nfine = "New fine balance is $" + patron.getFineBalance();
+        	JOptionPane.showMessageDialog(null, nfine);
+        	
         });
         
         i6.addActionListener((ActionEvent e) -> {
@@ -149,6 +167,26 @@ public class UserInterface {
         	JOptionPane.showMessageDialog(null, ilist);
        });
          
+        i7.addActionListener((ActionEvent e) -> {
+        	String ci = (String)JOptionPane.showInputDialog(null,
+        			"Please enter item ID:\n",
+        			"Change due date",
+                    JOptionPane.PLAIN_MESSAGE);
+        	
+        	Integer cid = Integer.valueOf(ci);
+        	CirculatingItem cio = cil.getItem(cid);
+        	CheckoutRecord cor = cio.getRecord();
+        	GregorianCalendar dueDate = cor.getDueDate();
+        	String dstring = "The item is due " +dueDate.get(GregorianCalendar.HOUR_OF_DAY);
+        	String ndd = (String)JOptionPane.showInputDialog(null, "Please enter change in time (hours): \n", 
+        			dstring,
+        			JOptionPane.PLAIN_MESSAGE);
+        	int ct = Integer.parseInt(ndd);
+        	dueDate.set(GregorianCalendar.HOUR_OF_DAY, (dueDate.get(GregorianCalendar.HOUR_OF_DAY)+ ct));
+        	cor.setDueDate(dueDate);
+        	dstring = "The item is now due at "+dueDate.get(GregorianCalendar.HOUR_OF_DAY);
+        	JOptionPane.showMessageDialog(null, dstring);
+       });
   		
     }
 	public static void main(String[] args) {
@@ -161,8 +199,10 @@ public class UserInterface {
 		o3.addToFine(5.00);
 		Key k1 = new Key(1001, 102);
 		Key k2 = new Key(1002, 103);
+		Key k3 = new Key(1003,202);
 		CirculatingItemList cil = new CirculatingItemList(1001, k1);
 		cil.addItem(1002, k2);
+		cil.addItem(1003,  k3);
 		new UserInterface(npl, cil);
 	}
 
