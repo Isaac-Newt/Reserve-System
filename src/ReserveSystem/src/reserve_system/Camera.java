@@ -12,5 +12,20 @@ public class Camera extends CirculatingItem {
 		this.Model = mod;
 		this.itemList = list;
 	}
-
+	
+	public void checkOut(int Barcode) {
+		this.getBarcode();
+	}
+	
+	public static void main(String[] args) {
+		ArrayList camera = new ArrayList();
+		camera.add("SSD");
+		camera.add("Battery");
+		camera.add("Charger");
+		
+		System.out.println(camera);	
+	}
 }
+//	@Override
+//	public void checkOut(CheckoutRecord cr ) {
+//		this.Record = cr;
