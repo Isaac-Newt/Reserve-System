@@ -13,4 +13,31 @@ public class Bike extends CirculatingItem {
 		this.itemList = list;
 	}
 	
+	public void checkOut(int Barcode) {
+		this.getBarcode();
+	}
+	
+	public static void main(String[] args) {
+		ArrayList bike = new ArrayList();
+		bike.add("helmet");
+		bike.add("key");
+		System.out.println(bike);	
+		
+	}
+	// Getters and Setters
+	public String getModel() {
+		return Model;
+	}
+	public void setModel(String model) {
+		Model = model;
+	}
+	public ArrayList<Accessory> getItemList() {
+		return itemList;
+	}
+	public void setItemList(ArrayList<Accessory> itemList) {
+		this.itemList = itemList;
+	}
+	
+	
+	
 }
