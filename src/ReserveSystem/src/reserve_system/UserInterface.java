@@ -2,6 +2,7 @@ package reserve_system;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.GregorianCalendar;
+import java.util.ArrayList;
 
 import javax.swing.*; 
 public class UserInterface {
@@ -200,6 +201,17 @@ public class UserInterface {
 		Key k1 = new Key(1001, 102);
 		Key k2 = new Key(1002, 103);
 		Key k3 = new Key(1003,202);
+		Accessory bc1 = new Accessory("Battery Charger", "Camera", 3001, 24, "Shelf");
+		Accessory mc1 = new Accessory("Memory Card", "Camera", 3002, 24, "Shelf");
+		Accessory cc1 = new Accessory("Camera Cable", "Camera", 3003, 24, "Shelf");
+		Accessory cb1 = new Accessory("Camera Battery", "Camera", 3004, 24, "Shelf");
+		
+		ArrayList <Accessory> A1 = new ArrayList<Accessory>();
+		A1.add(bc1);
+		A1.add(mc1);
+		A1.add(cc1);
+		A1.add(cb1);
+		Camera c1 = new Camera("Canon", A1, 2001, 24, "Shelf");
 		CirculatingItemList cil = new CirculatingItemList(1001, k1);
 		cil.addItem(1002, k2);
 		cil.addItem(1003,  k3);
