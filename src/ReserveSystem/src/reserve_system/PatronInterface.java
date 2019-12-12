@@ -4,6 +4,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*
+ * This class provides the GUI for adding a patron to the
+ * "database" (PatronList map object). It is implemented
+ * using a JPanel within the main UI window
+ */
+
 public class PatronInterface {
 
 	public PatronInterface(PatronList npl, JFrame f) {

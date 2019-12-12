@@ -4,11 +4,15 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.*;
 
+/*
+ * This class provides the interface for checking out "complex"
+ * items (Bike and Camera), allowing for checkout of additional
+ * accessory items
+ */
+
 public class AssociatedItems implements ActionListener {
-	
 	
 	private ArrayList<Accessory> itemList;
 	private Patron patron;

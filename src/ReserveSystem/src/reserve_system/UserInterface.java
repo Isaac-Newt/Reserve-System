@@ -1,10 +1,17 @@
 package reserve_system;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.GregorianCalendar;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.*; 
+
+/* 
+ * This class implements the user interface using Swing.
+ * It handles input/output of user interactions, and also
+ * creates additional interface objects as necessary.
+ */
 
 public class UserInterface {
 	
@@ -108,6 +115,7 @@ public class UserInterface {
         		    // When finished, display message
         		    System.out.println("Thank you for checking out the necessary materials");
         		}
+        		
         		if (item.getType().equals("Camera")) {
         			// Cast to camera
         			Camera newItem = (Camera) item;

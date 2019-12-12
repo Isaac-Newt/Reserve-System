@@ -2,11 +2,20 @@ package reserve_system;
 
 import java.util.GregorianCalendar;
 
+/*
+ * This class interfaces between a Patron and a CirculatingItem,
+ * storing information about what is checked out to whom, as well
+ * as the due date/time. It is a component of both Patron and
+ * CirculatingItem, so that each knows its loan information.
+ */
+
 public class CheckoutRecord {
-	private Patron patron;  // change Dec 7:  why not store patron, rather than ID?
+
+	private Patron patron;
 	private CirculatingItem Item;
 	private GregorianCalendar DueDate = new GregorianCalendar();  // change to allow use of dates
 	
+	// Constructor
 	public CheckoutRecord(Patron p, CirculatingItem i, GregorianCalendar dd) {
 		this.patron = p;
 		this.Item = i;
@@ -28,6 +37,7 @@ public class CheckoutRecord {
 	public CirculatingItem getItem(){
 		return this.Item;
 	}
+	
 	@Override
 	public String toString() {
 		String nstring = new String();

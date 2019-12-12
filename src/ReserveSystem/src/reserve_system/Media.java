@@ -10,6 +10,7 @@ public class Media extends CirculatingItem {
     // Combines "Professor" and "isLibraryProperty" from class diagram
     private String Owner;
 
+    // Constructor
     public Media(
             String call, String title, String auth, String course, String owner,
             int bar, int dur, String loc, CheckoutRecord rec) {

@@ -2,12 +2,17 @@ package reserve_system;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-//December 6.  EB added attributes, constructor, setters and getters for all fields except for Record
+/*
+ * This class provides for the creation of patron objects.
+ */
+
+// December 6.  EB added attributes, constructor, setters and getters for all fields except for Record
 // Also added methods for CheckoutRecord and addToRecord.
 // This required changing the due date field of Circulating Item to GregorianCalendar type.
 
 public class Patron {
 	private int ID;
+	// Replaces subclasses Community, Student, Faculty
 	private String Type;
 	private String lastName;
 	private String firstName;

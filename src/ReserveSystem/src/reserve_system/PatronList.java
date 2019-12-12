@@ -2,6 +2,12 @@ package reserve_system;
 
 import java.util.*;
 
+/*
+ * This class provides a place to store all instances of Patron.
+ * It is utilized by the UserInterface class to retrieve items as using
+ * their associated ID
+ */
+
 public class PatronList {
 	
 	Map<Integer, Patron> patronList = new HashMap<Integer, Patron>();
@@ -11,7 +17,7 @@ public class PatronList {
 		patronList.put(patronID, patron);
 	}
 	
-	// Getter
+	// Getter (based on ID)
 	public Patron getPatron(Integer patronID) {
 		Patron patron = patronList.get(patronID);
 		return patron;

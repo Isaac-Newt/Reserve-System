@@ -1,5 +1,10 @@
 package reserve_system;
 
+/*
+ * Accessory: accompanies other items, object type
+ * indicated by data member "Name"
+ */
+
 public class Accessory extends CirculatingItem {
 
     private String Name;

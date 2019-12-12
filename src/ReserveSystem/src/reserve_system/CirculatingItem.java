@@ -1,5 +1,11 @@
 package reserve_system;
 
+/*
+ * This is an abstract class from which all items available for checkout inherit.
+ * It provides for the creation of common data members, as well as providing a
+ * toString() implementation.
+ */
+
 public abstract class CirculatingItem {
 	
 	// Abstract class does not define data members, only declares them
