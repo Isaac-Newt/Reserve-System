@@ -1,6 +1,14 @@
 # Reserve-System
 System to model a library's reserve item circulation system
 
+## Source Map
+
+Source files are stored in a flat directory in the inner-most src/ directory. Documentation for functionality is provided on a source file level as necessary.
+
+The below image shows the class map for this project:
+
+![Image of Class Diagram](diagram.png)
+
 ## Coding Style
 
 I generally use the following coding style. Feel free to write code in whatever style you prefer, but if you're looking for a style, I've found this to be quite clear and readable. 
