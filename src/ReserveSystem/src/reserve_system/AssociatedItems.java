@@ -88,8 +88,8 @@ public class AssociatedItems implements ActionListener {
 			}	
 		});
     }
-    
-    public String makeList(ArrayList<Accessory> a) {
+    // Temporarily making this static
+    public static String makeList(ArrayList<Accessory> a) {
     	String message = "";
 		for (Accessory acc: a) {
 			message += " " + acc.getName();

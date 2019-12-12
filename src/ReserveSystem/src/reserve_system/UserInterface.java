@@ -3,8 +3,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.GregorianCalendar;
 import java.util.ArrayList;
-
+import java.util.Scanner;
 import javax.swing.*; 
+
 public class UserInterface {
 	
 	JMenu Circulation, PatronRecords;  //Menu 
@@ -71,20 +72,88 @@ public class UserInterface {
 	        	CirculatingItem item = cil.getItem(itemBarCode);
 	        	System.out.println(item);
 	        	
-        		        // Check out the item to the selected patron
-	        		patron.checkOut(item);
-	        		if (item.getType().equals("Bike")) {
-	        		
-	        			Bike bike = (Bike) item;
-	        			AssociatedItems ats = new AssociatedItems(f, bike, cil);
-	        		}
-	        		if (item.getType().equals("Camera")) {
-	        			System.out.println("Hey!");
-	        			Camera camera = (Camera) item;
-	        			AssociatedItems ats = new AssociatedItems(f, camera, cil);
-	        		}
-	        		String cstring = patron.getFirstName() + " " + patron.getLastName() + " checked out item ID " +barcode;
-	        		JOptionPane.showMessageDialog(null, cstring);
+    		    // Check out the item to the selected patron
+        		patron.checkOut(item);
+        		
+        		// Temporarily implement this in the console
+        		
+        		// if item is a bike or is a camera:
+        		if (item.getType().equals("Bike")) {
+        			// Cast to bike or camera
+        			Bike newItem = (Bike) item;
+        		    // Open scanner
+            		// create local variable list to be a modifiable item list
+        		    Scanner sc = new Scanner(System.in);
+        		    // Make a mutable list
+        		    ArrayList<Accessory> itemList = newItem.getItemList();
+        		    
+        		    // While list is not empty
+        		    while (! itemList.isEmpty()) {
+        		        // pass current item's list to atd and display the message
+        		    	// Temporarily made the method static, make sure to address in future
+        		        System.out.println("Please check out:" + AssociatedItems.makeList(itemList));
+        		        
+        		        // scan in the barcode
+        		        System.out.print("Enter item barcode: ");
+        		        int bar = sc.nextInt();
+        		        
+        		        // Check out the item
+        		        CirculatingItem accessoryToCheckOut = cil.getItem(bar);
+        		        patron.checkOut(accessoryToCheckOut);
+        		        
+        		        // Remove from the list
+        		        itemList.remove(accessoryToCheckOut);
+        		    }
+        		    
+        		    // When finished, display message
+        		    System.out.println("Thank you for checking out the necessary materials");
+        		}
+        		if (item.getType().equals("Camera")) {
+        			// Cast to camera
+        			Camera newItem = (Camera) item;
+        		    // Open scanner
+            		// create local variable list to be a modifiable item list
+        		    Scanner sc = new Scanner(System.in);
+        		    // Make a mutable list
+        		    ArrayList<Accessory> itemList = newItem.getItemList();
+        		    
+        		    // While list is not empty
+        		    while (! itemList.isEmpty()) {
+        		        // pass current item's list to atd and display the message
+        		    	// Temporarily made the method static, make sure to address in future
+        		        System.out.println("Please check out:" + AssociatedItems.makeList(itemList));
+        		        
+        		        // scan in the barcode
+        		        System.out.print("Enter item barcode: ");
+        		        int bar = sc.nextInt();
+        		        
+        		        // Check out the item
+        		        CirculatingItem accessoryToCheckOut = cil.getItem(bar);
+        		        patron.checkOut(accessoryToCheckOut);
+        		        
+        		        // Remove from the list
+        		        itemList.remove(accessoryToCheckOut);
+        		    }
+        		    
+        		    // When finished, display message
+        		    System.out.println("Thank you for checking out the necessary materials");
+        		}
+        		
+        		/*
+        		if (item.getType().equals("Bike")) {
+        		
+        			Bike bike = (Bike) item;
+        			AssociatedItems ats = new AssociatedItems(f, bike, cil);
+        		}
+        		if (item.getType().equals("Camera")) {
+        			System.out.println("Hey!");
+        			Camera camera = (Camera) item;
+        			AssociatedItems ats = new AssociatedItems(f, camera, cil);
+        		}
+        		*/
+        		
+        		String cstring = patron.getFirstName() + " " + patron.getLastName() + " checked out item ID " +barcode;
+        		JOptionPane.showMessageDialog(null, cstring);
         	}
 	    });
         
