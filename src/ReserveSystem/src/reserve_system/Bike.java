@@ -12,5 +12,8 @@ public class Bike extends CirculatingItem {
 		this.Model = mod;
 		this.itemList = list;
 	}
+	public ArrayList<Accessory> getItemList(){
+		return itemList;
+	}
 	
 }
