@@ -69,8 +69,20 @@ public class UserInterface {
 	        	
 	        	Integer itemBarCode = Integer.valueOf(barcode);
 	        	CirculatingItem item = cil.getItem(itemBarCode);
+	        	System.out.println(item);
+	        	
         		        // Check out the item to the selected patron
 	        		patron.checkOut(item);
+	        		if (item.getType().equals("Bike")) {
+	        		
+	        			Bike bike = (Bike) item;
+	        			AssociatedItems ats = new AssociatedItems(f, bike, cil);
+	        		}
+	        		if (item.getType().equals("Camera")) {
+	        			System.out.println("Hey!");
+	        			Camera camera = (Camera) item;
+	        			AssociatedItems ats = new AssociatedItems(f, camera, cil);
+	        		}
 	        		String cstring = patron.getFirstName() + " " + patron.getLastName() + " checked out item ID " +barcode;
 	        		JOptionPane.showMessageDialog(null, cstring);
         	}
@@ -190,6 +202,7 @@ public class UserInterface {
        });
   		
     }
+    
 	public static void main(String[] args) {
 		Patron o1 = new Patron(101, "Faculty", "Joe", "Smith", "js@123.com", 4555555);
 		Patron o2 = new Patron(102, "Student", "Johan", "Schmidt", "js2@123.com", 3555555);
@@ -205,16 +218,26 @@ public class UserInterface {
 		Accessory mc1 = new Accessory("Memory Card", "Camera", 3002, 24, "Shelf");
 		Accessory cc1 = new Accessory("Camera Cable", "Camera", 3003, 24, "Shelf");
 		Accessory cb1 = new Accessory("Camera Battery", "Camera", 3004, 24, "Shelf");
-		
+		Accessory bh1 = new Accessory("Bike helmet", "Bike", 4001, 24, "Shelf");
 		ArrayList <Accessory> A1 = new ArrayList<Accessory>();
+		ArrayList <Accessory> B1 = new ArrayList<Accessory>();
 		A1.add(bc1);
 		A1.add(mc1);
 		A1.add(cc1);
 		A1.add(cb1);
+		B1.add(bh1);
 		Camera c1 = new Camera("Canon", A1, 2001, 24, "Shelf");
+		Bike b1 = new Bike("Yellow", B1, 5001, 24, "Outside");
 		CirculatingItemList cil = new CirculatingItemList(1001, k1);
 		cil.addItem(1002, k2);
 		cil.addItem(1003,  k3);
+		cil.addItem(3001, bc1);
+		cil.addItem(3002,  mc1);
+		cil.addItem(3003,  cc1);
+		cil.addItem(3004,  cb1);
+		cil.addItem(4001, bh1);
+		cil.addItem(2001,  c1);
+		cil.addItem(5001, b1);
 		new UserInterface(npl, cil);
 	}
 
