@@ -3,18 +3,26 @@ package reserve_system;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 public class AssociatedItems implements ActionListener {
 	
+	
+	private ArrayList<Accessory> itemList;
+	
 	// GUI Part
     JTextArea area; JButton b, b1; JLabel l;
-    AssociatedItems()
-    {
+    AssociatedItems(JFrame f, CirculatingItem ci, CirculatingItemList cil)
+    {	
+    	this.itemList = ci.getItemList();
+    	String text = makeList(this.itemList);
         // Setting the button 
-    	JFrame f = new JFrame();
+    	JPanel jp = new JPanel();
 		l=new JLabel();  
-		l.setBounds(50,50,300,30);  
+		l.setBounds(50,50,300,30);
+		l.setText(text);
 		area=new JTextArea();  
 		area.setBounds(50,250,200,30);  
 		b=new JButton("Choose");
@@ -33,27 +41,36 @@ public class AssociatedItems implements ActionListener {
 			}	
 		});
 
-		f.add(l);f.add(area);f.add(b); f.add(b1);
-		f.setSize(400,400);  
-		f.setLayout(null);  
-		f.setVisible(true); 
+		jp.add(l);jp.add(area);jp.add(b); jp.add(b1);
+		jp.setSize(400,400);  
+		jp.setLayout(null);  
+		jp.setVisible(true);
+		f.add(jp);
     }		
+    
+    public String makeList(ArrayList<Accessory> a) {
+    	String message = "";
+		for (Accessory acc: a) {
+			message += acc.getName();
+		}
+		return message;
+	}
+       
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		String text = area.getText();
-		if (text.equals("Bike")) {
-			l.setText("Helmet, Key");	
-		} else if (text.equals("Camera")) {
-			l.setText("SSD, \n Charger, \n Bag");
-		} else {
-				l.setText("Empty");
-		}	
+		String barCode = area.getText();
+		int bc = Integer.valueOf(barCode);
+		CirculatingItem i = cil.getItem(bc);
+		ci.getRecord.getPatron().checkOut(i);
+		
+	
+		
 	}	
 	// My Main Function
 	public static void main(String[] args) 
 	{  			
-		new AssociatedItems();
+		new AssociatedItems(null, null, null);
 	
 	} 
 
