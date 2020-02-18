@@ -19,7 +19,7 @@ public class Bike extends CirculatingItem {
 	}
 	
 	public String getModel() {
-	    reuturn this.Model;
+	    return this.Model;
 	}
 	
 }
